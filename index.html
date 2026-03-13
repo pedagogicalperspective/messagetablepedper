@@ -2653,6 +2653,7 @@ info@pedagogicalperspective.com`
 </script>
 <style>
 
+
 :root {
   --ink:#1a1a2e;--dark:#3b2a7a;--med:#5c4db1;--light:#ede9f8;--xlight:#f7f5fe;
   --gold:#f0a500;--gold-d:#c88800;--muted:#6b6b8a;--border:#d5cfee;--white:#ffffff;
@@ -2779,6 +2780,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 ::-webkit-scrollbar-thumb:hover{background:var(--med)}
 
+
 </style>
 </head>
 <body>
@@ -2815,7 +2817,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <span class="filter-label">Stage</span>
         <div class="filter-options" id="stageFilters"></div>
       </div>
-      <button class="clear-btn" id="clearBtn">✕ Clear all filters</button>
+      <button class="clear-btn" id="clearBtn">× Clear all filters</button>
     </div>
     <div class="panel">
       <div class="panel-head">Compliance</div>
@@ -2847,7 +2849,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         <div class="modal-badges" id="mBadges"></div>
         <div class="modal-title" id="mTitle"></div>
       </div>
-      <button class="modal-close" id="modalClose" title="Close">✕</button>
+      <button class="modal-close" id="modalClose" title="Close">×</button>
     </div>
     <div class="modal-tabs">
       <button class="modal-tab active" data-pane="en">🇬🇧 English</button>
@@ -2871,12 +2873,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   <strong>Pedagogical Perspective (PedPer)</strong><br>
   Open Access · Double-Blind Peer Review · No APC · CC BY 4.0 · COPE Compliant<br>
   <a href="https://pedagogicalperspective.com" target="_blank">pedagogicalperspective.com</a> ·
-  <a href="/cdn-cgi/l/email-protection#2a43444c456a5a4f4e4b4d454d43494b465a4f58595a4f495e435c4f04494547"><span class="__cf_email__" data-cfemail="7a13141c153a0a1f1e1b1d151d13191b160a1f08090a1f190e130c1f54191517">[email&#160;protected]</span></a><br>
+  <a href="mailto:info@pedagogicalperspective.com">info@pedagogicalperspective.com</a><br>
   Ordu University, Faculty of Education, 52200 Altınordu – Ordu, Türkiye · ISSN 2822-4841
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-
+<script>
 (function () {
   'use strict';
   if (typeof PEDPER_MESSAGES === 'undefined') {
@@ -2899,7 +2900,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   $('stCope').textContent = msgs.filter(m=>m.cope||m.scopus||m.wos).length;
 
   function buildFilters(){
-    /* ROLES */
     const rf=$('roleFilters'); rf.innerHTML='';
     DATA.roles.forEach(role=>{
       const count=msgs.filter(m=>m.role===role.id).length;
@@ -2909,7 +2909,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       chip.addEventListener('click',()=>toggleFilter('roles',role.id));
       rf.appendChild(chip);
     });
-    /* STAGES */
     const sf=$('stageFilters'); sf.innerHTML='';
     DATA.stages.filter(s=>msgs.some(m=>m.stage===s.id)).forEach(stage=>{
       const count=msgs.filter(m=>m.stage===stage.id).length;
@@ -2919,7 +2918,6 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
       chip.addEventListener('click',()=>toggleFilter('stages',stage.id));
       sf.appendChild(chip);
     });
-    /* COMPLIANCE */
     const cf=$('complianceFilters'); cf.innerHTML='';
     [{id:'cope',color:'#1a5a8a',icon:'🛡️',label:'COPE'},{id:'scopus',color:'#e87722',icon:'🔶',label:'Scopus'},{id:'wos',color:'#c0392b',icon:'🔴',label:'Web of Science'}].forEach(cd=>{
       const count=msgs.filter(m=>m[cd.id]).length;
@@ -3052,4 +3050,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
   function copyText(text){
     if(navigator.clipboard){navigator.clipboard.writeText(text);}
     else{const ta=document.createElement('textarea');ta.value=text;ta.style.cssText='position:fixed;opacity:0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);}
-    showToast('�
+    showToast('📋 Copied to clipboard!');
+  }
+  let toastTimer;
+  function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200);}
+
+  render();
+})();
+</script>
+</body>
+</html>
